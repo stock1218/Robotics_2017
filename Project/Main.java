@@ -23,19 +23,20 @@ public class Main {
 	static boolean pickUp;
 	public static void main(String args[]) {
 		pickUp = false;
-		
+
 		for(int[] x : map) {
 			for(int y : x) {
 			y = 0;
 			}
 		}
 
+		Behavior putDown = new PutDown();
 		Behavior search = new Search();
 		Behavior pickUp = new PickUp();
 		Behavior turn = new Turn();
 		Behavior returnBase = new ReturnBase();
 		Behavior adjust = new Adjust();
-		Behavior[] behaviors = {search,pickUp, turn, returnBase, adjust};
+		Behavior[] behaviors = {search,pickUp, turn, returnBase, adjust, PutDown};
 		Arbitrator arb = new Arbitrator(behaviors);
 		arb.start();
 	}
