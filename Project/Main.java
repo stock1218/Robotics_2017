@@ -35,8 +35,7 @@ public class Main {
 		Behavior pickUp = new PickUp();
 		Behavior turn = new Turn();
 		Behavior returnBase = new ReturnBase();
-		Behavior adjust = new Adjust();
-		Behavior[] behaviors = {search,pickUp, turn, returnBase, adjust, PutDown};
+		Behavior[] behaviors = {search, pickUp, turn, returnBase, PutDown};
 		Arbitrator arb = new Arbitrator(behaviors);
 		arb.start();
 	}
