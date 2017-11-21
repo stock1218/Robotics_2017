@@ -1,4 +1,4 @@
-public class pickUp implements Behavior {
+public class PickUp implements Behavior {
 	public void action() {
 		pilot.setTravelSpeed(200);
 		pilot.forward();
