@@ -7,6 +7,7 @@ public class PickUp implements Behavior {
 		Delay.msDelay(200);
 		pilot.stop();
 		main.map[(int)nav.getPoseProvider().getPose().getX()][(int)nav.getPoseProvider().getPose().getY()]=0;
+		boolean pickUp=true;
 	}
 	public void suppress() {
 		
