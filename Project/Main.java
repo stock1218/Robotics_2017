@@ -20,16 +20,22 @@ public class Main {
 	static UltrasonicSensor us = new UltrasonicSensor(SensorPort.S2);
 	static ColorSensor cs = new ColorSensor(SensorPort.S3);
 	static int map[][];
+	static boolean pickUp;
 	public static void main(String args[]) {
+		pickUp = false;
 		
-	for(int[] x : map) {
-		for(int y : x) {
+		for(int[] x : map) {
+			for(int y : x) {
 			y = 0;
 			}
-	}
-		Behavior move = new Move();
+		}
+
+		Behavior search = new Search();
 		Behavior pickUp = new PickUp();
-		Behavior[] behaviors = {move,pickUp};
+		Behavior turn = new Turn();
+		Behavior returnBase = new ReturnBase();
+		Behavior adjust = new Adjust();
+		Behavior[] behaviors = {search,pickUp, turn, returnBase, adjust};
 		Arbitrator arb = new Arbitrator(behaviors);
 		arb.start();
 	}
