@@ -3,7 +3,7 @@ public class PickUp implements Behavior {
 		main.pilot.forward();
 		Motor.B.setSpeed(360);
 		Motor.B.rotate(140,true);
-		Delay.msDelay(200);
+		Delay.msDelay(400);
 		main.pilot.stop();
 		main.map[(int)main.nav.getPoseProvider().getPose().getX()][(int)main.nav.getPoseProvider().getPose().getY()]=0;
 		boolean pickUp=true;
