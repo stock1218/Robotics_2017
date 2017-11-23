@@ -20,11 +20,27 @@ public class Main {
 	static UltrasonicSensor us = new UltrasonicSensor(SensorPort.S2);
 	static ColorSensor cs = new ColorSensor(SensorPort.S3);
 	static int map[][];
+	static Path search;
 	static boolean pickUp;
 	public boolean isCollected;
 	public static void main(String args[]) {
 		pickUp = false;
 		isCollected = false;
+
+		int y = 5;
+		int x = 5;
+		for(; y >= 0; y--) {
+			if(x == 5) {
+				for(; x >= 0; x--) {
+					path.addWaypoint(x,y);
+				}
+			} else {
+				for(; x < 6; x++) {
+					path.addWaypoint(x,y);
+				}
+			}
+
+		}
 
 		for(int[] x : map) {
 			for(int y : x) {

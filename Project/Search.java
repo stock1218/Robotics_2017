@@ -1,10 +1,8 @@
 public class Search implements Behavior {
 
-	private Path search;
-
 	public void action() {
 
-		Main.nav.followPath(search);
+		Main.nav.followPath(Main.search);
 
 	}
 
@@ -13,8 +11,7 @@ public class Search implements Behavior {
 	}
 
 	public void takeControl() {
-
-
+		return true;
 	}
 
 }
