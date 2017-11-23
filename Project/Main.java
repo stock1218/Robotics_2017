@@ -21,8 +21,10 @@ public class Main {
 	static ColorSensor cs = new ColorSensor(SensorPort.S3);
 	static int map[][];
 	static boolean pickUp;
+	public boolean isCollected;
 	public static void main(String args[]) {
 		pickUp = false;
+		isCollected = false;
 
 		for(int[] x : map) {
 			for(int y : x) {
