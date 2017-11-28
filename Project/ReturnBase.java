@@ -1,28 +1,45 @@
-public class ReturnBase implements Behavior{
-private int nextPlace;
-	public static void action() {
-		findNext();
-		Main.nav.goTo(5, nextPlace);// base starts at (5,5) up to(5,0) 
-		// goTo takes the robot from wherever it is to the waypoint mentioned
-		
-		//Pose currentpos=Main.pp.getPose();  current position of the robot
-		//Path path = findRoute(Pose currentpos, Waypoint (9,nextPlace)); //9,9 is base
-		//Main.nav.followPath(path);
-	}
-	
-	public static void supress() {
-		Pickup.pickedUp=false;
-	}
-	
-	public static boolean takeControl() {
-		return (PickUp.pickedUp&&!Main.isCollected);
-	}
-	
-	public void findNext() {
-		for (int i=5;i>=0;i--) {
-			if (Main.map[5][i] == 0) {
-				nextPlace = i;	
-			}
-		}	
-	}
-}
+import lejos.robotics.mapping.LineMap;
+import lejos.robotics.navigation.DestinationUnreachableException;
+import lejos.robotics.navigation.Waypoint;
+import lejos.robotics.pathfinding.Path;
+import lejos.robotics.pathfinding.ShortestPathFinder;
+import lejos.robotics.subsumption.Behavior;
+
+public class ReturnBase implements Behavior {
+	 
+	 private int nextPlace;
+	  	public void action() {
+
+			System.out.println("return");
+	 		findNext();
+//	 		LineMap linemap = new LineMap();
+//	 		ShortestPathFinder finder = new ShortestPathFinder(linemap);
+//	 		Path path;
+//			try {
+//				path = finder.findRoute(Main.pp.getPose(), (new Waypoint(9,nextPlace)));
+//		  		Main.nav.followPath(path);
+//			} catch (DestinationUnreachableException e) {
+//				e.printStackTrace();
+//			}
+			
+			Main.nav.goTo(5, nextPlace);
+
+	 	}
+	  	
+	  	public void suppress() {
+	  		Main.pickUp=false;
+	  	}
+	  	
+	  	public boolean takeControl() {
+
+	 		return (Main.pickUp&&!Main.isCollected);
+	 	}
+	 	
+	 	public void findNext() {
+	 		for (int i=9;i>=0;i--) {
+	 			if (Main.map[9][i] == 0) {
+	 				nextPlace = i;	
+	 			}
+	 		}	
+	  	}
+	  }
