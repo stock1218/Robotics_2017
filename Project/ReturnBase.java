@@ -1,11 +1,12 @@
 public class ReturnBase implements Behavior{
 private int nextPlace;
 	public static void action() {
-		
-		Pose currentpos=Main.pp.getPose(); // current position of the robot
 		findNext();
-		Path path = findRoute(Pose currentpos, Waypoint (9,nextPlace)); //9,9 is base
-		Main.nav.followPath(path);
+		Main.nav.goTo(5, nextPlace);// base starts at (5,5) and goes to(5,0)
+		
+		//Pose currentpos=Main.pp.getPose();  current position of the robot
+		//Path path = findRoute(Pose currentpos, Waypoint (9,nextPlace)); //9,9 is base
+		//Main.nav.followPath(path);
 	}
 	
 	public static void supress() {
@@ -17,8 +18,8 @@ private int nextPlace;
 	}
 	
 	public void findNext() {
-		for (int i=9;i>=0;i--) {
-			if (Main.map[9][i] == 0) {
+		for (int i=5;i>=0;i--) {
+			if (Main.map[5][i] == 0) {
 				nextPlace = i;	
 			}
 		}	
