@@ -1,8 +1,11 @@
+import lejos.robotics.subsumption.Behavior;
+
 public class Search implements Behavior {
 
 	public void action() {
 
-		Main.nav.followPath(Main.search);
+		System.out.println("search");
+		Main.nav.followPath(Main.searchPath);
 
 	}
 
@@ -10,7 +13,7 @@ public class Search implements Behavior {
 
 	}
 
-	public void takeControl() {
+	public boolean takeControl() {
 		return true;
 	}
 
