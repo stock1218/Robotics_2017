@@ -1,12 +1,20 @@
+import lejos.nxt.Motor;
+import lejos.robotics.subsumption.Behavior;
+import lejos.util.Delay;
+
 public class PickUp implements Behavior {
+	
+
+	
 	public void action() {
-		main.pilot.forward();
+		System.out.println("up");
+		Main.pilot.forward();
 		Motor.B.setSpeed(360);
 		Motor.B.rotate(140,true);
 		Delay.msDelay(400);
-		main.pilot.stop();
-		main.map[(int)main.nav.getPoseProvider().getPose().getX()][(int)main.nav.getPoseProvider().getPose().getY()]=0;
-		boolean pickUp=true;
+		Main.pilot.stop();
+		Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=0;
+		Main.pickUp=true;
 	}
 	public void suppress() {
 		
