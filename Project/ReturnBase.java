@@ -2,7 +2,8 @@ public class ReturnBase implements Behavior{
 private int nextPlace;
 	public static void action() {
 		findNext();
-		Main.nav.goTo(5, nextPlace);// base starts at (5,5) up to(5,0)
+		Main.nav.goTo(5, nextPlace);// base starts at (5,5) up to(5,0) 
+		// goTo takes the robot from wherever it is to the waypoint mentioned
 		
 		//Pose currentpos=Main.pp.getPose();  current position of the robot
 		//Path path = findRoute(Pose currentpos, Waypoint (9,nextPlace)); //9,9 is base
