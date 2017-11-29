@@ -21,6 +21,7 @@ public class Main {
 	static UltrasonicSensor us = new UltrasonicSensor(SensorPort.S2);
 	static ColorSensor cs = new ColorSensor(SensorPort.S3);
 	static int map[][] = new int[5][5];
+	static int scale;
 	static Path searchPath = new Path();
 	static boolean pickUp;
 	public static boolean isCollected;
