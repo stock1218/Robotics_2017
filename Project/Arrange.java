@@ -19,88 +19,89 @@ public class Arrange implements Behavior {
 		Main.nav.followPath(path());
 		//travels to base
 		count--;
+		int scale=Main.scale;
 		switch(count) {
 			case 0: 
 				Sound.beepSequence();
 				break;
 			case 1:
-				path.add(new Waypoint(3,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(3*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
 				break;
 			
 			case 2:	
-				path.add(new Waypoint(4,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(2,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(2*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
 				break;
 
 			case 3:
-				path.add(new Waypoint(3,4));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(3*scale,4*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(4,2));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,2*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(3,4));
+				path.add(new Waypoint(3*scale,4*scale));
 				path.add(new Waypoint(0,count));
 				count--;
 				break;
 
 			case 4:
-				path.add(new Waypoint(4,4));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,4*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(2,4));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(2*scale,4*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(4,2));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,2*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(2,2));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(2*scale,2*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
 				break;
 
 			case 5: 
-				path.add(new Waypoint(3,5));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(3*scale,5*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(5,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(5*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(4,1));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,1*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(1,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(1*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(2,1));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(2*scale,1*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
 				break;
 
 			case 6:
-				path.add(new Waypoint(4,5));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,5*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(5,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(5*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(2,5));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(2*scale,5*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(4,1));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(4*scale,1*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(2,1));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(2*scale,1*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
-				path.add(new Waypoint(1,3));
-				path.add(new Waypoint(0,count));
+				path.add(new Waypoint(1*scale,3*scale));
+				path.add(new Waypoint(0,count*scale));
 				count--;
 				break;
 
