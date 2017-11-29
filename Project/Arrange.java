@@ -18,6 +18,7 @@ public class Arrange implements Behavior {
 		path.add(new Waypoint(450,450));
 		Main.nav.followPath(path());
 		//travels to base
+		count--;
 		switch(count) {
 			case 0: 
 				Sound.beepSequence();
