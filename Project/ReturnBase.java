@@ -42,4 +42,15 @@ public class ReturnBase implements Behavior {
 	 			}
 	 		}	
 	  	}
+	
+		 public void putDown( ) {
+	  		System.out.println("down");
+			Main.pilot.backward();
+			Motor.B.setSpeed(360);
+			Motor.B.rotate(-140,true);
+			Delay.msDelay(400);
+			Main.pilot.stop();
+			Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=1;
+	  		
+	  	}
 	  }
