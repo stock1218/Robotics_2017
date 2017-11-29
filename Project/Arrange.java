@@ -5,6 +5,7 @@ import lejos.robotics.subsumption.Behavior;
 
 public class Arrange implements Behavior {
 		private int count=0;
+		private int scale=Main.scale;
 	public void action() {
 		Path path = new Path();
 
@@ -65,9 +66,9 @@ public class Arrange implements Behavior {
 			}
 	}
 	public void drop(int x, int y) {
-		Main.nav.goTo(x,y);
+		Main.nav.goTo(x*scale,y*scale);
 		ReturnBase.putDown();
-		Main.nav.goTo(0,count);
+		Main.nav.goTo(0,count*scale);
 		count--;
 	}
 	public void suppress() {
