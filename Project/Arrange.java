@@ -1,6 +1,7 @@
 import lejos.nxt.Sound;
 import lejos.robotics.navigation.Waypoint;
 import lejos.robotics.pathfinding.Path;
+import lejos.robotics.subsumption.Behavior;
 
 public class Arrange implements Behavior {
 		private int count=0;
@@ -61,7 +62,7 @@ public class Arrange implements Behavior {
 				drop(2,1);
 				drop(1,3);
 				break;
-
+			}
 	}
 	public void drop(int x, int y) {
 		Main.nav.goTo(x,y);
