@@ -1,115 +1,74 @@
+import lejos.nxt.Sound;
+import lejos.robotics.navigation.Waypoint;
 import lejos.robotics.pathfinding.Path;
 
 public class Arrange implements Behavior {
-
+		private int count=0;
 	public void action() {
-		int count=0;
 		Path path = new Path();
 
 		//counts number of bricks
 		for(int i = 0;i < Main.map.length;i++)
 		{
-			for(int j = 0;j < Main.map[].length;j++) {
+			for(int j = 0;j < Main.map.length;j++) {
 				if (Main.map[i][j] == 1)  count += 1;
 			}
 		}
 		//hardcoded as 6 bricks
 		Main.pp.getPose();
-		path.add(new Waypoint(450,450));
-		Main.nav.followPath(path());
+		Main.nav.goTo(0,0);
 		//travels to base
 		count--;
-		int scale=Main.scale;
 		switch(count) {
 			case 0: 
 				Sound.beepSequence();
 				break;
 			case 1:
-				path.add(new Waypoint(3*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
+				drop(3,3);
 				break;
 			
 			case 2:	
-				path.add(new Waypoint(4*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(2*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
+				drop(4,3);
+				drop(2,3);
 				break;
 
 			case 3:
-				path.add(new Waypoint(3*scale,4*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(4*scale,2*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(3*scale,4*scale));
-				path.add(new Waypoint(0,count));
-				count--;
+				drop(3,4);
+				drop(4,2);
+				drop(2,2);
 				break;
 
 			case 4:
-				path.add(new Waypoint(4*scale,4*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(2*scale,4*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(4*scale,2*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(2*scale,2*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
+				drop(4,4);
+				drop(2,4);
+				drop(4,2);
+				drop(2,2);
 				break;
 
 			case 5: 
-				path.add(new Waypoint(3*scale,5*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(5*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(4*scale,1*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(1*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(2*scale,1*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
+				drop(3,5);
+				drop(5,3);
+				drop(4,1);
+				drop(1,3);
+				drop(2,1);
 				break;
 
 			case 6:
-				path.add(new Waypoint(4*scale,5*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(5*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(2*scale,5*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(4*scale,1*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(2*scale,1*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
-				path.add(new Waypoint(1*scale,3*scale));
-				path.add(new Waypoint(0,count*scale));
-				count--;
+				drop(4,5);
+				drop(5,3);
+				drop(2,5);
+				drop(4,1);
+				drop(2,1);
+				drop(1,3);
 				break;
 
-		}
-		
-		
 	}
-	
+	public void drop(int x, int y) {
+		Main.nav.goTo(x,y);
+		ReturnBase.putDown();
+		Main.nav.goTo(0,count);
+		count--;
+	}
 	public void suppress() {
 		
 	}
