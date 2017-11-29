@@ -23,6 +23,7 @@ public class ReturnBase implements Behavior {
 //			}
 			
 			Main.nav.goTo(5, nextPlace);
+			putDown();
 
 	 	}
 	  	
