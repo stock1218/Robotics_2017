@@ -36,8 +36,8 @@ public class ReturnBase implements Behavior {
 	 	}
 	 	
 	 	public void findNext() {
-	 		for (int i=9;i>=0;i--) {
-	 			if (Main.map[9][i] == 0) {
+	 		for (int i=5;i>=0;i--) {
+	 			if (Main.map[5][i] == 0) {
 	 				nextPlace = i;	
 	 			}
 	 		}	
