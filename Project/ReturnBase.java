@@ -4,6 +4,8 @@ import lejos.robotics.navigation.Waypoint;
 import lejos.robotics.pathfinding.Path;
 import lejos.robotics.pathfinding.ShortestPathFinder;
 import lejos.robotics.subsumption.Behavior;
+import lejos.nxt.Motor;
+import lejos.util.Delay;
 
 public class ReturnBase implements Behavior {
 	 
@@ -36,15 +38,7 @@ public class ReturnBase implements Behavior {
 	 		return (Main.pickUp&&!Main.isCollected);
 	 	}
 	 	
-	 	public void findNext() {
-	 		for (int i=5;i>=0;i--) {
-	 			if (Main.map[5][i] == 0) {
-	 				nextPlace = i;	
-	 			}
-	 		}	
-	  	}
-	
-		 public void putDown( ) {
+	  	public void putDown( ) {
 	  		System.out.println("down");
 			Main.pilot.backward();
 			Motor.B.setSpeed(360);
@@ -53,5 +47,13 @@ public class ReturnBase implements Behavior {
 			Main.pilot.stop();
 			Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=1;
 	  		
+	  	}
+	  	
+	 	public void findNext() {
+	 		for (int i=5;i>=0;i--) {
+	 			if (Main.map[5][i] == 0) {
+	 				nextPlace = i;	
+	 			}
+	 		}	
 	  	}
 	  }
