@@ -13,51 +13,66 @@ import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 
 public class Main {
-
-	static DifferentialPilot pilot = new DifferentialPilot(56, 95, Motor.A, Motor.C);
+//for now we might leave adjust as it is and focus on pickup etc.
+	static DifferentialPilot pilot = new DifferentialPilot(56, 127, Motor.A, Motor.C);
 	static PoseProvider pp = new OdometryPoseProvider(pilot);
 	static Navigator nav = new Navigator(pilot, pp);
 	static LightSensor ls = new LightSensor(SensorPort.S1);
 	static UltrasonicSensor us = new UltrasonicSensor(SensorPort.S2);
 	static ColorSensor cs = new ColorSensor(SensorPort.S3);
-	static int map[][] = new int[5][5];
-	static int scale;
+	static int map[][];
 	static Path searchPath = new Path();
+	static int pathX[], pathY[];
 	static boolean pickUp;
-	public static boolean isCollected;
-	
+	static boolean isCollected;
+	static boolean turning;
+	static int scale, pos, size;
+	static boolean adjusted;
+
 	public static void main(String args[]) {
+		nav.singleStep(false);
+		turning = false; 
+		adjusted = false;
+		size = 6;
+		pos = 0;
+		nav.singleStep(true);
+		pilot.setTravelSpeed(80);
+		scale = 35;
 		pickUp = false;
 		isCollected = false;
+		pathX = new int[size];
+		pathY = new int[size];
+		map = new int[size][size];
+		
+		int x = 0;
+		for (int y = 0; y < size; y++) {
+			if (x > 0) {
+				for (x = size - 1; x >= 0; x--) {
+					searchPath.add(new Waypoint(x * scale, y * scale));
 
-		int x = 5;
-		for(int y = 5; y >= 0; y--) {
-			if(x > 0) {
-				for(x = 5; x >= 0; x--) {
-					searchPath.add(new Waypoint(x*50,y*50));
-					
+
 				}
 			} else {
-				for(x = 0; x < 6; x++) {
-					searchPath.add(new Waypoint(x*50,y*50));
-					
+				for (x = 0; x < size; x++) {
+					searchPath.add(new Waypoint(x * scale, y * scale));
+
+
 				}
 			}
-
+			System.out.print("\n");
 		}
 
-		for(int[] z : map) {
-			for(int w : z) {
+		for (int[] z : map) {
+			for (int w : z) {
 				w = 0;
 			}
 		}
 
-		Behavior putDown = new PutDown();
 		Behavior search = new Search();
-		Behavior pickUp = new PickUp();      
-		Behavior turn = new Turn();
+	//	Behavior pickUp = new PickUp();
+		Behavior adjust = new Adjust();
 		Behavior returnBase = new ReturnBase();
-		Behavior[] behaviors = {search, pickUp, turn, putDown, returnBase};
+		Behavior[] behaviors = { search,returnBase, adjust };
 		Arbitrator arb = new Arbitrator(behaviors);
 		arb.start();
 	}
