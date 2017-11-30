@@ -1,24 +1,24 @@
-import lejos.nxt.Sound;
-import lejos.robotics.navigation.Waypoint;
 import lejos.robotics.pathfinding.Path;
 import lejos.robotics.subsumption.Behavior;
 
+
 public class Arrange implements Behavior {
-		private int count=0;
-		private int scale=Main.scale;
+
 	public void action() {
+		int count=0;
 		Path path = new Path();
 
 		//counts number of bricks
 		for(int i = 0;i < Main.map.length;i++)
 		{
-			for(int j = 0;j < Main.map.length;j++) {
+			for(int j = 0;j < Main.map[].length;j++) {
 				if (Main.map[i][j] == 1)  count += 1;
 			}
 		}
 		//hardcoded as 6 bricks
 		Main.pp.getPose();
-		Main.nav.goTo(0,0);
+		path.add(new Waypoint(450,450));
+		Main.nav.followPath(path());
 		//travels to base
 		count--;
 		switch(count) {
@@ -26,51 +26,91 @@ public class Arrange implements Behavior {
 				Sound.beepSequence();
 				break;
 			case 1:
-				drop(3,3);
+				path.add(new Waypoint(3*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
 				break;
 			
 			case 2:	
-				drop(4,3);
-				drop(2,3);
+				path.add(new Waypoint(4*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(2*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
 				break;
 
 			case 3:
-				drop(3,4);
-				drop(4,2);
-				drop(2,2);
+				path.add(new Waypoint(3*Main.scale,4*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(4*Main.scale,2*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(3*Main.scale,4*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
 				break;
 
 			case 4:
-				drop(4,4);
-				drop(2,4);
-				drop(4,2);
-				drop(2,2);
+				path.add(new Waypoint(4*Main.scale,4*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(2*Main.scale,4*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(4*Main.scale,2*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(2*Main.scale,2*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
 				break;
 
 			case 5: 
-				drop(3,5);
-				drop(5,3);
-				drop(4,1);
-				drop(1,3);
-				drop(2,1);
+				path.add(new Waypoint(3*Main.scale,5*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(5*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(4*Main.scale,1*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(1*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(2*Main.scale,1*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
 				break;
 
 			case 6:
-				drop(4,5);
-				drop(5,3);
-				drop(2,5);
-				drop(4,1);
-				drop(2,1);
-				drop(1,3);
+				path.add(new Waypoint(4*Main.scale,5*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(5*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(2*Main.scale,5*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(4*Main.scale,1*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(2*Main.scale,1*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
+				path.add(new Waypoint(1*Main.scale,3*Main.scale));
+				path.add(new Waypoint(0*Main.scale,count*Main.scale));
+				count--;
 				break;
-			}
+
+		}
+		
+		
 	}
-	public void drop(int x, int y) {
-		Main.nav.goTo(x*scale,y*scale);
-		ReturnBase.putDown();
-		Main.nav.goTo(0,count*scale);
-		count--;
-	}
+	
 	public void suppress() {
 		
 	}
