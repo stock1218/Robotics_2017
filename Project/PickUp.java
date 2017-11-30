@@ -11,10 +11,12 @@ public class PickUp implements Behavior {
 		Main.pilot.forward();
 		Motor.B.setSpeed(360);
 		Motor.B.rotate(140,true);
-		Delay.msDelay(400);
 		Main.pilot.stop();
-		Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=0;
-		Main.pickUp=true;
+		System.out.println((int)Main.pp.getPose().getX()/50);
+		System.out.println((int)Main.pp.getPose().getY()/50);
+		Delay.msDelay(2000);
+		Main.map[(int)Main.pp.getPose().getX()/Main.scale][(int)Main.pp.getPose().getY()/Main.scale]=0;
+		Main.pickUp=true;	
 	}
 	public void suppress() {
 		
