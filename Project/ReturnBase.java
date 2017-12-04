@@ -37,7 +37,7 @@ public class ReturnBase implements Behavior {
 	 		return (Main.pickUp&&!Main.isCollected);
 	 	}
 	 	
-	  	public void putDown( ) {
+	  	public static void putDown( ) {
 	  		System.out.println("down");
 			Main.pilot.backward();
 			Motor.B.setSpeed(360);
