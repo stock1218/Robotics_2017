@@ -37,7 +37,7 @@ public class Main {
 		pos = 0;
 		nav.singleStep(true);
 		pilot.setTravelSpeed(80);
-		scale = 35;
+		scale = 87;
 		pickUp = false;
 		isCollected = false;
 		pathX = new int[size];
