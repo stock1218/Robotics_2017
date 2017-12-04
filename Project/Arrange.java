@@ -66,7 +66,7 @@ public class Arrange implements Behavior {
 		}
 	}
 	public void drop(int x, int y) {
-		Main.nav.goTo(x,y);
+		Main.nav.goTo(x*scale,y*scale);
 		ReturnBase.putDown();
 		Main.nav.goTo(0,count);
 		count--;
