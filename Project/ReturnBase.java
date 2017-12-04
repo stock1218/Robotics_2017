@@ -24,13 +24,12 @@ public class ReturnBase implements Behavior {
 //				e.printStackTrace();
 //			}
 			
-			Main.nav.goTo(5, nextPlace);
+			Main.nav.goTo(5*Main.scale, nextPlace*Main.scale);
 			putDown();
-
 	 	}
 	  	
 	  	public void suppress() {
-	  		Main.pickUp=false;
+	  		
 	  	}
 	  	
 	  	public boolean takeControl() {
@@ -46,6 +45,7 @@ public class ReturnBase implements Behavior {
 			Delay.msDelay(400);
 			Main.pilot.stop();
 			Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=1;
+			Main.pickUp = false;
 	  		
 	  	}
 	  	
