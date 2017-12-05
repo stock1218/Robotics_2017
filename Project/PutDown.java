@@ -5,17 +5,18 @@ import lejos.util.Delay;
 public class PutDown implements Behavior{
 	public void action() {
 		System.out.println("down");
-		Main.pilot.backward();
-		Motor.B.setSpeed(360);
-		Motor.B.rotate(-140,true);
-		Delay.msDelay(400);
-		Main.pilot.stop();
-		Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=1;
+		Motor.B.setSpeed(200);
+		Motor.B.rotate(-180);
+		Main.pilot.travel(-200);
+		Main.pickUp = false;
+		//Main.map[(int)Main.pp.getPose().getY()/Main.scale][(int)Main.pp.getPose().getX()/Main.scale]=1;
+		Main.atBase = false;
+		Main.putDown = false;
 	}
 	public void suppress() {
 		
 	}
 	public boolean takeControl() {
-		return Main.us.getDistance()<20;
+		return ((Main.atBase)||(Main.putDown));
 	}
 }
