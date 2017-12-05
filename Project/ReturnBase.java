@@ -11,21 +11,22 @@ public class ReturnBase implements Behavior {
 	 
 	 private int nextPlace;
 	  	public void action() {
-
+	  		Main.pilot.setTravelSpeed(500);
+	  		Arrange.count++;
 			System.out.println("return");
-	 		findNext();
-//	 		LineMap linemap = new LineMap();
-//	 		ShortestPathFinder finder = new ShortestPathFinder(linemap);
-//	 		Path path;
-//			try {
-//				path = finder.findRoute(Main.pp.getPose(), (new Waypoint(9,nextPlace)));
-//		  		Main.nav.followPath(path);
-//			} catch (DestinationUnreachableException e) {
-//				e.printStackTrace();
-//			}
-			
-			Main.nav.goTo(5*Main.scale, nextPlace*Main.scale);
-			putDown();
+	 		findNext();			
+	 		Path pathy = new Path();
+	 		pathy.add(new Waypoint(nextPlace*Main.scale,0));
+	 		Main.nav.stop();
+			while(Math.abs((int)Main.pp.getPose().getX()-nextPlace*Main.scale) > 1 && (int)Main.pp.getPose().getY() > 0) {
+				
+				System.out.println((int)Main.pp.getPose().getX()+ " ," + (int)Main.pp.getPose().getY());
+				Main.nav.followPath(pathy);
+				System.out.println("following");
+				
+			}
+	 		Main.pickUp = false;
+	 		Main.atBase = true;
 	 	}
 	  	
 	  	public void suppress() {
@@ -36,24 +37,14 @@ public class ReturnBase implements Behavior {
 
 	 		return (Main.pickUp&&!Main.isCollected);
 	 	}
-	 	
-	  	public static void putDown( ) {
-	  		System.out.println("down");
-			Main.pilot.backward();
-			Motor.B.setSpeed(360);
-			Motor.B.rotate(-140,true);
-			Delay.msDelay(400);
-			Main.pilot.stop();
-			Main.map[(int)Main.nav.getPoseProvider().getPose().getX()][(int)Main.nav.getPoseProvider().getPose().getY()]=1;
-			Main.pickUp = false;
-	  		
-	  	}
 	  	
 	 	public void findNext() {
-	 		for (int i=5;i>=0;i--) {
-	 			if (Main.map[5][i] == 0) {
+	 		for (int i=0;i<Main.size;i++) {
+	 			if (Main.map[0][i] == 0) {
 	 				nextPlace = i;	
 	 			}
-	 		}	
+	 		}
+	 		
+	 		Main.map[0][nextPlace] = 1;
 	  	}
 	  }
