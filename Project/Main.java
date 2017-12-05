@@ -2,6 +2,7 @@ import lejos.nxt.ColorSensor;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
+import lejos.nxt.Sound;
 import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.localization.OdometryPoseProvider;
 import lejos.robotics.localization.PoseProvider;
@@ -22,26 +23,21 @@ public class Main {
 	static ColorSensor cs = new ColorSensor(SensorPort.S3);
 	static int map[][];
 	static Path searchPath = new Path();
-	static int pathX[], pathY[];
-	static boolean pickUp;
-	static boolean isCollected;
-	static boolean turning;
-	static int scale, pos, size;
-	static boolean adjusted;
-
+	static boolean pickUp, atBase, isCollected, adjusted, putDown;
+	static int scale, size;
+	static File fatality = new File("fatality.wav");
+	static File fight = new File("fight.wav");
 	public static void main(String args[]) {
 		nav.singleStep(false);
-		turning = false; 
 		adjusted = false;
 		size = 6;
-		pos = 0;
 		nav.singleStep(true);
 		pilot.setTravelSpeed(80);
-		scale = 115;
+		scale = 170;
 		pickUp = false;
+		putDown= false;
+		atBase = false;
 		isCollected = false;
-		pathX = new int[size];
-		pathY = new int[size];
 		map = new int[size][size];
 		
 		int x = 0;
@@ -69,11 +65,14 @@ public class Main {
 		}
 
 		Behavior search = new Search();
-	//	Behavior pickUp = new PickUp();
-		Behavior adjust = new Adjust();
+		Behavior pickUp = new PickUp();
+		//Behavior adjust = new Adjust();
 		Behavior returnBase = new ReturnBase();
-		Behavior[] behaviors = { search,returnBase, adjust };
+		Behavior putDown = new PutDown();
+		Behavior arrange = new Arrange();
+		Behavior[] behaviors = { search,arrange,pickUp,returnBase,putDown};
 		Arbitrator arb = new Arbitrator(behaviors);
+		Sound.playSample(fight);
 		arb.start();
 	}
 }
