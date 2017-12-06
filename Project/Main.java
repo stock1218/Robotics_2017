@@ -1,3 +1,5 @@
+import java.io.File;
+
 import lejos.nxt.ColorSensor;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
@@ -15,7 +17,7 @@ import lejos.robotics.subsumption.Behavior;
 
 public class Main {
 //for now we might leave adjust as it is and focus on pickup etc.
-	static DifferentialPilot pilot = new DifferentialPilot(56, 127, Motor.A, Motor.C);
+static DifferentialPilot pilot = new DifferentialPilot(56, 125, Motor.A, Motor.C);
 	static PoseProvider pp = new OdometryPoseProvider(pilot);
 	static Navigator nav = new Navigator(pilot, pp);
 	static LightSensor ls = new LightSensor(SensorPort.S1);
@@ -69,8 +71,8 @@ public class Main {
 		//Behavior adjust = new Adjust();
 		Behavior returnBase = new ReturnBase();
 		Behavior putDown = new PutDown();
-		Behavior arrange = new Arrange();
-		Behavior[] behaviors = { search,arrange,pickUp,returnBase,putDown};
+		//Behavior arrange = new Arrange();
+		Behavior[] behaviors = { search,pickUp,returnBase,putDown};
 		Arbitrator arb = new Arbitrator(behaviors);
 		Sound.playSample(fight);
 		arb.start();
